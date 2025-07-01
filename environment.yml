@@ -1,0 +1,10 @@
+channels:
+  - conda-forge
+dependencies:
+  - mcrnmf
+  - pandas
+  - scipy
+  - ipython
+  - joblib
+  - matplotlib
+  - scikit-learn
