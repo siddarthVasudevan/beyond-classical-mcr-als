@@ -430,7 +430,7 @@ class RxnAbcWithNoisePlotter:
                     cbar_ax = fig.add_axes([0.88, 0.25, 0.02, 0.55])
                     cbar = fig.colorbar(im, cax=cbar_ax)
                     cbar.set_label(
-                        f"\\% Rel-MSE",
+                        f"\\% Rel-RMSE",
                         fontsize=fig_obj.font_sizes["xlabel"],
                     )
 
@@ -534,7 +534,7 @@ class RxnAbcWithNoisePlotter:
                     cbar_ax = fig.add_axes([1, 0.25, 0.02, 0.55])
                     cbar = fig.colorbar(im, cax=cbar_ax)
                     cbar.set_label(
-                        f"\\% Rel-MSE",
+                        f"\\% Rel-RMSE",
                         fontsize=fig_obj.font_sizes["xlabel"],
                     )
                     fig.supylabel(
@@ -685,7 +685,7 @@ class RxnAbcWithNoisePlotter:
                     cbar_ax = fig.add_axes([0.88, 0.25, 0.02, 0.55])
                     cbar = fig.colorbar(im, cax=cbar_ax)
                     cbar.set_label(
-                        f"\\% Rel-MSE({error_type[-1]})",
+                        f"\\% Rel-RMSE({error_type[-1]})",
                         fontsize=fig_obj.font_sizes["xlabel"],
                     )
                     fig_obj.set_subplot_labels(
@@ -821,7 +821,7 @@ class RxnAbcWithNoisePlotter:
                     cbar_ax = fig.add_axes([0.88, 0.25, 0.02, 0.55])
                     cbar = fig.colorbar(im, cax=cbar_ax)
                     cbar.set_label(
-                        f"\\% Rel-MSE({error_type[-1]})",
+                        f"\\% Rel-RMSE({error_type[-1]})",
                         fontsize=fig_obj.font_sizes["xlabel"],
                     )
                     fig_obj.set_subplot_labels(
@@ -911,7 +911,7 @@ class RxnAbcWithNoisePlotter:
                                     )
                                 if row == (num_rows - 1):
                                     ax.set_xlabel(
-                                        f"Rel-MSE({error_type[-1]})\\ [\\%]",
+                                        f"Rel-RMSE({error_type[-1]})\\ [\\%]",
                                         fontsize=fig_obj.font_sizes["xlabel"],
                                     )
                                 else:
@@ -993,7 +993,8 @@ class RxnAbcWithNoisePlotter:
                                 color=color,
                                 # alpha=0.9,
                             )
-                        ax.set_xlim(xmin=-2, xmax=xmax)
+                        if error_type != "% Rel-MSE X":
+                            ax.set_xlim(xmin=-2, xmax=xmax)
                         if row == 0:
                             ax.set_title(
                                 f"{noise_perc}\\% Noise",
@@ -1001,11 +1002,12 @@ class RxnAbcWithNoisePlotter:
                             )
                         if row == (num_rows - 1):
                             ax.set_xlabel(
-                                f"Rel-MSE({error_type[-1]})\\ [\\%]",
+                                f"Rel-RMSE({error_type[-1]})\\ [\\%]",
                                 fontsize=fig_obj.font_sizes["xlabel"],
                             )
                         else:
-                            ax.set_xticklabels([])
+                            if error_type != "% Rel-MSE X":
+                                ax.set_xticklabels([])
                         if col == 0:
                             ax.set_ylabel(
                                 f"$\\eta$",
